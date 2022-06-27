@@ -3,7 +3,7 @@ import IconHour from "/assets/images/icon-hour.png"
 
 export function Form() {
   return (
-    <form className="mt-20 mb-20 border-2 border-b-4 rounded border-gray-300">
+    <form className="mt-20 border-2 border-b-4 rounded border-gray-300">
       <div className="flex flex-col m-4">
         <div className="flex items-center">
           <img 
