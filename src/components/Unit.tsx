@@ -28,9 +28,9 @@ export function Unit( props: UnitProps ) {
       </div>
       { props.status === "Aberto" ?
         <div>
-          <div className="bg-gray-200 w-full h-[1px] mt-7" />
+          <div className="bg-gray-200 w-full h-[1px] mt-4" />
 
-          <div className="flex mt-6 items-center justify-between">
+          <div className="flex mt-4 items-center justify-between">
             {props.rules.map(rule => (
               <img
                 src={rule}
