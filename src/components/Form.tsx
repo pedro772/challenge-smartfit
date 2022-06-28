@@ -2,6 +2,21 @@ import { Radio } from "./Radio"
 import IconHour from "/assets/images/icon-hour.png"
 
 export function Form() {
+  const radioOptions = [
+    {
+      periodo: "Manhã",
+      horario: "06:00 às 12:00"
+    },
+    {
+      periodo: "Tarde",
+      horario: "12:01 às 18:00"
+    },
+    {
+      periodo: "Noite",
+      horario: "18:01 às 23:00"
+    },
+  ];
+
   return (
     <form className="mt-20 border-2 border-b-4 rounded border-gray-300">
       <div className="flex flex-col m-4">
@@ -18,11 +33,12 @@ export function Form() {
           <div className="p-4 border-b border-gray-300">
             <legend className="mt-6 ml-2 text-lg font-gothamLight text-gray-500">Qual período quer treinar?</legend>
           </div>
-          
-          <Radio optionName="Manhã" timePeriod="06:00 às 12:00" />
-          <Radio optionName="Tarde" timePeriod="12:01 às 18:00" />
-          <Radio optionName="Noite" timePeriod="18:01 às 23:00" />
 
+          <div>
+            {radioOptions.map(option => (
+              <Radio optionName={option.periodo} timePeriod={option.horario} />
+            ))}
+          </div>
 
           <div className="flex justify-between mt-10">
             <div className="flex items-center">

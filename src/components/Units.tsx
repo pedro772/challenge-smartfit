@@ -14,7 +14,10 @@ interface UnitData {
     content: string;
     opened: boolean;
     title: string;
-    schedules: [];
+    schedules: {
+      weekdays: string, 
+      hour: string
+    }[];
   }[];
 }
 
@@ -32,31 +35,21 @@ export function Units() {
   }
 
   if(unitData) {
-  return (
-    <div className="flex">
-      <Unit
-        status={unitData.locations[0].opened == true ? "Aberto" : "Fechado"}
-        name={unitData.locations[0].title}
-        location={unitData.locations[0].content}
-        rules={[requiredMask, requiredTowel, partialFountain, forbiddenLockerroom]}
-        schedules={unitData.locations[0].schedules}
-      />
-      <Unit
-        status={unitData.locations[0].opened == true ? "Aberto" : "Fechado"}
-        name={unitData.locations[0].title}
-        location={unitData.locations[0].content}
-        rules={[requiredMask, requiredTowel, partialFountain, forbiddenLockerroom]}
-        schedules={unitData.locations[0].schedules}
-      />
-      <Unit
-        status={unitData.locations[0].opened == true ? "Aberto" : "Fechado"}
-        name={unitData.locations[0].title}
-        location={unitData.locations[0].content}
-        rules={[requiredMask, requiredTowel, partialFountain, forbiddenLockerroom]}
-        schedules={unitData.locations[0].schedules}
-      />
-    </div>
-  )
+    // Removes units outside pattern from list
+    const units = unitData.locations.filter(unit => unit.content != undefined)
+    return (
+      <div className="flex overflow-x-auto overflow-hidden max-h-[28rem]">
+        { units.map(unit => (
+          <Unit
+            status={unit.opened == true ? "Aberto" : "Fechado"}
+            name={unit.title}
+            location={unit.content}
+            rules={[requiredMask, requiredTowel, partialFountain, forbiddenLockerroom]}
+            schedules={unit.schedules}
+          />
+        )) }
+      </div>
+    )
   } else {
     return (
       <div></div>
