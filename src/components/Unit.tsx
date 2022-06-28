@@ -26,21 +26,29 @@ export function Unit( props: UnitProps ) {
           {parse(props.location)}
         </div>
       </div>
-      <div className="flex mt-6 items-center justify-between">
-        {props.rules.map(rule => (
-          <img
-            src={rule}
-            className="object-contain h-12" />
-        ))}
-      </div>
-      <div className="grid grid-cols-2">
-        {props.schedules.map(schedule => (
-          <div className="mt-4 flex flex-col">
-            <h3 className="font-gothamBlack text-gray-700">{schedule.weekdays}</h3>
-            <p className="font-gothamLight text-gray-700 text-sm">{schedule.hour}</p>
+      { props.status === "Aberto" ?
+        <div>
+          <div className="bg-gray-200 w-full h-[1px] mt-7" />
+
+          <div className="flex mt-6 items-center justify-between">
+            {props.rules.map(rule => (
+              <img
+                src={rule}
+                className="object-contain h-12" />
+            ))}
           </div>
-        ))}
-      </div>
+          <div className="grid grid-cols-2">
+            {props.schedules.map(schedule => (
+              <div className="mt-4 flex flex-col">
+                <h3 className="font-gothamBlack text-gray-700">{schedule.weekdays}</h3>
+                <p className="font-gothamLight text-gray-700 text-sm">{schedule.hour}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        :
+        <div></div>
+      }
     </div>
   )
 }
