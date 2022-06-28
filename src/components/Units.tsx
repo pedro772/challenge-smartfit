@@ -38,7 +38,7 @@ export function Units() {
     // Removes units outside pattern from list
     const units = unitData.locations.filter(unit => unit.content != undefined)
     return (
-      <div className="flex overflow-x-auto overflow-hidden max-h-[28rem]">
+      <div className="flex overflow-x-auto overflow-hidden">
         { units.map(unit => (
           <Unit
             status={unit.opened == true ? "Aberto" : "Fechado"}

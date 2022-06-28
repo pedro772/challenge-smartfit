@@ -13,7 +13,7 @@ interface UnitProps {
 
 export function Unit( props: UnitProps ) {
   return (
-    <div className="flex flex-col bg-gray-100 my-4 mr-8 p-4 drop-shadow-lg rounded min-w-[16rem] max-w-[19.5rem] max-h-[28rem]">
+    <div className="flex flex-col bg-gray-100 my-4 mr-8 p-4 drop-shadow-lg rounded min-w-[16rem] max-w-[19.5rem]">
       <div className='max-w-[13.5rem]'>
         {
           props.status === "Aberto" ? 
