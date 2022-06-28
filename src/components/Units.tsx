@@ -58,9 +58,7 @@ export function Units() {
     const units = unitData.locations.filter(unit => unit.content != undefined)
     return (
       <div className="flex overflow-x-auto overflow-hidden">
-        { units.map(unit => {
-
-          return (
+        { units.map(unit => (
           <Unit
             status={unit.opened == true ? "Aberto" : "Fechado"}
             name={unit.title}
@@ -73,8 +71,7 @@ export function Units() {
             ]}
             schedules={unit.schedules}
           />
-          )
-        }) }
+        )) }
       </div>
     )
   } else {
