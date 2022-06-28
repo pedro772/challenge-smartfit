@@ -40,43 +40,25 @@ const permissions: any = {
   }
 }
 
-export function Units() {
-  const [unitData, setUnitData] = useState<UnitData>();
-
-  useEffect(() => {
-    getUnits();
-  }, []);
-
-  const getUnits = async () => {
-    const res = await fetch(apiURL);
-    const jsonData = await res.json();
-    setUnitData(jsonData);
-  }
-
-  if(unitData) {
-    // Removes units outside pattern from list
-    const units = unitData.locations.filter(unit => unit.content != undefined)
-    return (
-      <div className="flex overflow-x-auto overflow-hidden">
-        { units.map(unit => (
-          <Unit
-            status={unit.opened == true ? "Aberto" : "Fechado"}
-            name={unit.title}
-            location={unit.content}
-            rules={[
-              permissions.mask[unit.mask],
-              permissions.towel[unit.towel],
-              permissions.fountain[unit.fountain],
-              permissions.locker_room[unit.locker_room]
-            ]}
-            schedules={unit.schedules}
-          />
-        )) }
-      </div>
-    )
-  } else {
-    return (
-      <div></div>
-    )
-  }
+export function Units( props : UnitData ) {
+  // Removes units outside pattern from list
+  const units = props.locations.filter(unit => unit.content != undefined)
+  return (
+    <div className="flex overflow-x-auto overflow-hidden">
+      { units.map(unit => (
+        <Unit
+          status={unit.opened == true ? "Aberto" : "Fechado"}
+          name={unit.title}
+          location={unit.content}
+          rules={[
+            permissions.mask[unit.mask],
+            permissions.towel[unit.towel],
+            permissions.fountain[unit.fountain],
+            permissions.locker_room[unit.locker_room]
+          ]}
+          schedules={unit.schedules}
+        />
+      )) }
+    </div>
+  )
 }
