@@ -34,7 +34,16 @@ function App() {
   const getUnits = async () => {
     const res = await fetch(apiURL);
     const jsonData = await res.json();
-    setUnitData(jsonData);
+    
+    // Removes units outside pattern from list
+    const filteredLocations = jsonData.locations.filter((location: { content: any }) => location.content != undefined)
+    const correctedData = {...jsonData, locations: filteredLocations}
+
+    setUnitData(correctedData);
+  }
+
+  function clearAll() {
+    setUnitData(undefined);
   }
 
   if(unitData) {
@@ -43,7 +52,7 @@ function App() {
         <Header />
     
         <main className="flex-1 mx-20 mb-20">
-          <Form />
+          <Form findAll={getUnits} clearAll={clearAll} locations={unitData.locations} />
           <Labels />
           <Units 
             locations={unitData.locations}
@@ -59,8 +68,9 @@ function App() {
         <Header />
     
         <main className="flex-1 mx-20 mb-20">
-          <Form />
+          <Form findAll={getUnits} clearAll={clearAll} />
           <Labels />
+          <h4 className="font-gothamBlack text-lg flex justify-center mt-6">Nenhuma unidade encontrada</h4>
         </main>
     
         <Footer />

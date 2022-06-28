@@ -1,7 +1,20 @@
+import { FormEvent } from "react";
 import { Radio } from "./Radio"
 import IconHour from "/assets/images/icon-hour.png"
 
-export function Form() {
+interface FormProps {
+  findAll: Function;
+  clearAll: Function;
+  locations?: {
+    opened: boolean;
+    schedules: {
+      weekdays: string, 
+      hour: string
+    }[];
+  }[];
+}
+
+export function Form( props : FormProps ) {
   const radioOptions = [
     {
       periodo: "Manhã",
@@ -16,6 +29,16 @@ export function Form() {
       horario: "18:01 às 23:00"
     },
   ];
+
+  function handleFind(e : FormEvent) {
+    e.preventDefault();
+    props.findAll()
+  }
+
+  function handleClear(e : FormEvent) {
+    e.preventDefault();
+    props.clearAll();
+  }
 
   return (
     <form className="mt-20 border-2 border-b-4 rounded border-gray-300">
@@ -55,17 +78,25 @@ export function Form() {
             <span className="flex font-gothamBold text-gray-800 items-center">
               Resultados Encontrados: 
               <span className="font-gothamBlack text-gray-800 text-2xl ml-1">
-                0
+                {props.locations ? props.locations.length : "0"}
               </span>
             </span>
           </div>
           
           <div className="flex items-center justify-center">
-            <button type="submit" className="py-4 px-16 rounded bg-yellow-500 mx-5">
+            <button 
+              type="submit" 
+              onClick={handleFind}
+              className="py-4 px-16 rounded bg-yellow-500 mx-5"
+            >
               <span className="font-gothamBlack">ENCONTRAR UNIDADE</span>
             </button>
 
-            <button type="submit" className="py-4 px-16 rounded bg-white border-2 border-gray-300 mx-5">
+            <button 
+              type="submit"
+              onClick={handleClear}
+              className="py-4 px-16 rounded bg-white border-2 border-gray-300 mx-5"
+            >
               <span className="font-gothamBlack">LIMPAR</span>
             </button>
           </div>

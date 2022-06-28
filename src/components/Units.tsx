@@ -40,12 +40,10 @@ const permissions: any = {
   }
 }
 
-export function Units( props : UnitData ) {
-  // Removes units outside pattern from list
-  const units = props.locations.filter(unit => unit.content != undefined)
+export function Units( { locations } : UnitData ) {
   return (
     <div className="flex overflow-x-auto overflow-hidden">
-      { units.map(unit => (
+      { locations.map(unit => (
         <Unit
           status={unit.opened == true ? "Aberto" : "Fechado"}
           name={unit.title}
