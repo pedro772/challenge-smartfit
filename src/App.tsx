@@ -34,7 +34,7 @@ function App() {
     const jsonData = await res.json();
     
     // Removes units outside pattern from list
-    const filteredLocations = jsonData.locations.filter((location: { content: string }) => location.content != undefined)
+    const filteredLocations = jsonData.locations.filter((location: { opened: boolean }) => location.opened != undefined)
 
     const correctedData = {...jsonData, locations: filteredLocations}
     return correctedData;
@@ -42,10 +42,10 @@ function App() {
 
   const getUnitsInDayPeriods = async () => {
     const allUnits = await getAllUnits();
-    let morningLocations = new Set();
-    let afternoonLocations = new Set();
-    let nightLocations = new Set();
-    let closedLocations = new Set();
+    let morningLocationsSet = new Set();
+    let afternoonLocationsSet = new Set();
+    let nightLocationsSet = new Set();
+    let closedLocationsSet = new Set();
     const getCharsBeforeLastHourMark = /(.*)h/;
 
     allUnits.locations.map((location: { schedules : {weekdays: string, hour: string}[], opened: boolean; }) => {
@@ -58,31 +58,41 @@ function App() {
           const closingTime = Number(stringBeforeLastHourMark?.slice(-2));
   
           if(openingTime >= 6 && openingTime < 12) {
-            morningLocations.add(location);
+            morningLocationsSet.add(location);
           }
   
           if(closingTime > 12) {
-            afternoonLocations.add(location);
+            afternoonLocationsSet.add(location);
           }
   
           if(closingTime < 23) {
-            nightLocations.add(location);
+            nightLocationsSet.add(location);
           }
-        } else if((schedule.hour).includes("às") && !location.opened) {
-          closedLocations.add(location);
+        } else if(!location.opened) {
+          closedLocationsSet.add(location);
         }
       })
     })
 
-    // TO-DO filter by closed locations
-    const morningUnits : UnitData = {...allUnits, locations: Array.from(morningLocations)};
-    const afternoonUnits : UnitData = {...allUnits, locations: Array.from(afternoonLocations)};
-    const nightUnits : UnitData = {...allUnits, locations: Array.from(nightLocations)};
+    const closedLocations = Array.from(closedLocationsSet);
+    const morningLocations = Array.from(morningLocationsSet);
+    const afternoonLocations = Array.from(afternoonLocationsSet);
+    const nightLocations = Array.from(nightLocationsSet);
+
+    const morningUnits : UnitData = {...allUnits, locations: morningLocations};
+    const afternoonUnits : UnitData = {...allUnits, locations: afternoonLocations};
+    const nightUnits : UnitData = {...allUnits, locations: nightLocations};
+    const allMorningUnits : UnitData = {...allUnits, locations: [...morningLocations, ...closedLocations]};
+    const allAfternoonUnits : UnitData = {...allUnits, locations: [...afternoonLocations, ...closedLocations]};
+    const allNightUnits : UnitData = {...allUnits, locations: [...nightLocations, ...closedLocations]};
 
     return {
       "morningUnits": morningUnits,
       "afternoonUnits": afternoonUnits,
-      "nightUnits": nightUnits
+      "nightUnits": nightUnits,
+      "allMorningUnits": allMorningUnits,
+      "allAfternoonUnits": allAfternoonUnits,
+      "allNightUnits": allNightUnits,
     };
   }
 
@@ -95,18 +105,37 @@ function App() {
   const findAll = async () => {
     if(selectedOption) {
       switch (selectedOption) {
-        case "Manhã": 
-          setUnitData((await getUnitsInDayPeriods()).morningUnits);
+        case "Manhã":
+          if(shouldShowClosedUnits) {
+            setUnitData((await getUnitsInDayPeriods()).allMorningUnits);
+          } else {
+            setUnitData((await getUnitsInDayPeriods()).morningUnits);
+          }
           break;
-        case "Tarde": 
-          setUnitData((await getUnitsInDayPeriods()).afternoonUnits);
+        case "Tarde":
+          if(shouldShowClosedUnits) {
+            setUnitData((await getUnitsInDayPeriods()).allAfternoonUnits);
+          } else {
+            setUnitData((await getUnitsInDayPeriods()).afternoonUnits);
+          }
           break;
         case "Noite": 
-          setUnitData((await getUnitsInDayPeriods()).nightUnits);
+          if(shouldShowClosedUnits) {
+            setUnitData((await getUnitsInDayPeriods()).allNightUnits);
+          } else {
+            setUnitData((await getUnitsInDayPeriods()).nightUnits);
+          }
           break;
       }
     } else {
-      setUnitData(await getAllUnits());
+      if(shouldShowClosedUnits) {
+        setUnitData(await getAllUnits());
+      } else {
+        const units = (await getAllUnits());
+        const locationsOpened = units.locations.filter((location: { opened: boolean }) => location.opened)
+        const unitsOpened = {...units, locations: locationsOpened}
+        setUnitData(unitsOpened);
+      }
     }
   }
 
