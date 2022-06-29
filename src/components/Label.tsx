@@ -16,7 +16,7 @@ export function Label( props: LabelProps ) {
               src={icon[0]}
               className="object-contain h-12"
             />
-            <p className="font-gothamLight text-xs text-black">{icon[1]}</p>
+            <p className="font-gothamBook text-sm text-black">{icon[1]}</p>
           </div>
         ))}
       </div>

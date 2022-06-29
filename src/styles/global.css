@@ -5,3 +5,23 @@
 body {
   -webkit-font-smoothing: antialiased;
 }
+
+@font-face {
+  font-family: "Gotham Black";
+  src: url("/fonts/gotham-black.woff2");
+}
+
+@font-face {
+  font-family: "Gotham Light";
+  src: url("/fonts/gotham-light.woff2");
+}
+
+@font-face {
+  font-family: "Gotham Book";
+  src: url("/fonts/gotham-book.woff2");
+}
+
+@font-face {
+  font-family: "Gotham Bold";
+  src: url("/fonts/gotham-bold.woff2");
+}

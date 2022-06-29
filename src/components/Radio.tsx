@@ -25,13 +25,13 @@ export function Radio( props: RadioProps ) {
             onChange={handleOptionChange}
             className="mr-2" />
         
-          <span className="font-gothamLight text-gray-500">
+          <span className="font-gothamBook text-gray-500">
             { props.optionName }
           </span>
         </label>
       </div>
       <label htmlFor={props.optionName} className="hover:cursor-pointer">
-        <span className="font-gothamLight text-gray-500">
+        <span className="font-gothamBook text-gray-500">
           { props.timePeriod }
         </span>
       </label>
