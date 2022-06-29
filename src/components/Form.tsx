@@ -54,14 +54,14 @@ export function Form( props : FormProps ) {
           <img 
             src={IconHour} 
             className="object-contain h-8" />
-          <label className="ml-4 font-gothamLight text-gray-500">
+          <label className="ml-4 font-gothamBook text-gray-500">
             Horário
           </label>
         </div>
         
         <fieldset>
           <div className="p-4 border-b border-gray-300">
-            <legend className="mt-6 ml-2 text-lg font-gothamLight text-gray-500">Qual período quer treinar?</legend>
+            <legend className="mt-6 ml-2 text-lg font-gothamBook text-gray-500">Qual período quer treinar?</legend>
           </div>
 
           <div>
@@ -86,11 +86,11 @@ export function Form( props : FormProps ) {
                 onChange={handleCheckChange}
               />
               <label htmlFor="exibir" className="ml-2 hover:cursor-pointer">
-                <span className="font-gothamBold text-gray-800">Exibir unidades fechadas</span>
+                <span className="font-gothamBook text-gray-800">Exibir unidades fechadas</span>
               </label>
             </div>
 
-            <span className="flex font-gothamBold text-gray-800 items-center">
+            <span className="flex font-gothamBook text-gray-800 items-center">
               Resultados Encontrados: 
               <span className="font-gothamBlack text-gray-800 text-2xl ml-1">
                 {props.locations ? props.locations.length : "0"}

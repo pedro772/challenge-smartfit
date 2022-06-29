@@ -17,12 +17,12 @@ export function Unit( props: UnitProps ) {
       <div className='max-w-[13.5rem]'>
         {
           props.status === "Aberto" ? 
-            <label className="font-gothamBlack text-green-600 text-sm">{props.status}</label>
+            <label className="font-gothamBold text-green-600 text-sm">{props.status}</label>
             :
-            <label className="font-gothamBlack text-red-700 text-sm">{props.status}</label>
+            <label className="font-gothamBold text-red-700 text-sm">{props.status}</label>
         }
         <h2 className="mt-2 font-gothamBlack text-gray-700 text-lg">{props.name}</h2>
-        <div className="mt-2 font-gothamLight text-gray-500 text-sm">
+        <div className="mt-2 font-gothamBook text-gray-500 text-sm">
           {parse(props.location)}
         </div>
       </div>
@@ -41,7 +41,7 @@ export function Unit( props: UnitProps ) {
             {props.schedules.map(schedule => (
               <div className="mt-4 flex flex-col">
                 <h3 className="font-gothamBlack text-gray-700">{schedule.weekdays}</h3>
-                <p className="font-gothamLight text-gray-700 text-sm">{schedule.hour}</p>
+                <p className="font-gothamBook text-gray-700 text-sm">{schedule.hour}</p>
               </div>
             ))}
           </div>
