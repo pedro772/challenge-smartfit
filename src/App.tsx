@@ -8,22 +8,7 @@ import { Units } from "./components/Units"
 
 import { getAllUnits } from "./utils/getAllUnits"
 import { getUnitsInDayPeriods } from "./utils/getUnitsInDayPeriods"
-
-interface UnitData {
-  locations: {
-    title: string;
-    content: string;
-    opened: boolean;
-    mask: string;
-    towel: string;
-    fountain: string;
-    locker_room: string;
-    schedules: {
-      weekdays: string, 
-      hour: string
-    }[];
-  }[];
-}
+import { UnitData } from "./utils/interfaceUnitData"
 
 function App() {
   const [unitData, setUnitData] = useState<UnitData>();

@@ -1,20 +1,6 @@
 import { getAllUnits } from "./getAllUnits";
 
-interface UnitData {
-  locations: {
-    title: string;
-    content: string;
-    opened: boolean;
-    mask: string;
-    towel: string;
-    fountain: string;
-    locker_room: string;
-    schedules: {
-      weekdays: string, 
-      hour: string
-    }[];
-  }[];
-}
+import { UnitData } from "./interfaceUnitData";
 
 export async function getUnitsInDayPeriods() {
   const allUnits = await getAllUnits();

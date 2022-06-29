@@ -1,24 +1,6 @@
-import { useEffect, useState } from "react"
-
 import { Unit } from "./Unit"
 
-const apiURL = "https://test-frontend-developer.s3.amazonaws.com/data/locations.json"
-
-interface UnitData {
-  locations: {
-    title: string;
-    content: string;
-    opened: boolean;
-    mask: string;
-    towel: string;
-    fountain: string;
-    locker_room: string;
-    schedules: {
-      weekdays: string, 
-      hour: string
-    }[];
-  }[];
-}
+import { UnitData } from "../utils/interfaceUnitData"
 
 const permissions: any = {
   mask: {
