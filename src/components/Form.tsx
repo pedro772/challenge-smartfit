@@ -5,6 +5,10 @@ import IconHour from "/assets/images/icon-hour.png"
 interface FormProps {
   findAll: Function;
   clearAll: Function;
+  selectedOption?: string;
+  shouldShowClosedUnits?: boolean;
+  setSelectedOption: Function;
+  setShouldShowClosedUnits: Function;
   locations?: {
     opened: boolean;
     schedules: {
@@ -15,17 +19,21 @@ interface FormProps {
 }
 
 export function Form( props : FormProps ) {
+  const handleCheckChange = () => {
+    props.setShouldShowClosedUnits((prevState: boolean) => !prevState)
+  }
+
   const radioOptions = [
     {
-      periodo: "Manhã",
+      dayPeriod: "Manhã",
       horario: "06:00 às 12:00"
     },
     {
-      periodo: "Tarde",
+      dayPeriod: "Tarde",
       horario: "12:01 às 18:00"
     },
     {
-      periodo: "Noite",
+      dayPeriod: "Noite",
       horario: "18:01 às 23:00"
     },
   ];
@@ -36,12 +44,11 @@ export function Form( props : FormProps ) {
   }
 
   function handleClear(e : FormEvent) {
-    e.preventDefault();
     props.clearAll();
   }
 
   return (
-    <form className="mt-20 border-2 border-b-4 rounded border-gray-300">
+    <form onSubmit={handleFind} className="mt-20 border-2 border-b-4 rounded border-gray-300">
       <div className="flex flex-col m-4">
         <div className="flex items-center">
           <img 
@@ -59,7 +66,12 @@ export function Form( props : FormProps ) {
 
           <div>
             {radioOptions.map(option => (
-              <Radio optionName={option.periodo} timePeriod={option.horario} />
+              <Radio
+                key={option.dayPeriod}
+                optionName={option.dayPeriod} 
+                timePeriod={option.horario}
+                selectedOption={props.selectedOption}
+                setSelectedOption={props.setSelectedOption} />
             ))}
           </div>
 
@@ -69,6 +81,9 @@ export function Form( props : FormProps ) {
                 type="checkbox"
                 id="exibir"
                 name="exibir"
+                value="exibir"
+                checked={props.shouldShowClosedUnits}
+                onChange={handleCheckChange}
               />
               <label htmlFor="exibir" className="ml-2 hover:cursor-pointer">
                 <span className="font-gothamBold text-gray-800">Exibir unidades fechadas</span>
@@ -84,21 +99,16 @@ export function Form( props : FormProps ) {
           </div>
           
           <div className="flex items-center justify-center">
-            <button 
+            <input 
               type="submit" 
-              onClick={handleFind}
-              className="py-4 px-16 rounded bg-yellow-500 mx-5"
-            >
-              <span className="font-gothamBlack">ENCONTRAR UNIDADE</span>
-            </button>
+              value="ENCONTRAR UNIDADE"
+              className="font-gothamBlack py-4 px-16 rounded bg-yellow-500 mx-5 hover:opacity-90 cursor-pointer transition-opacity" />
 
-            <button 
-              type="submit"
+            <input 
+              type="reset"
+              value="LIMPAR"
               onClick={handleClear}
-              className="py-4 px-16 rounded bg-white border-2 border-gray-300 mx-5"
-            >
-              <span className="font-gothamBlack">LIMPAR</span>
-            </button>
+              className="font-gothamBlack py-4 px-16 rounded bg-white border-2 border-gray-300 mx-5 cursor-pointer hover:bg-gray-300 hover:border-gray-500 transition-colors" />
           </div>
         </fieldset>
       </div>

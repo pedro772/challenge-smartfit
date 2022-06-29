@@ -45,6 +45,7 @@ export function Units( { locations } : UnitData ) {
     <div className="flex overflow-x-auto overflow-hidden">
       { locations.map(unit => (
         <Unit
+          key={unit.title}
           status={unit.opened == true ? "Aberto" : "Fechado"}
           name={unit.title}
           location={unit.content}
