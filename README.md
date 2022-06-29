@@ -11,8 +11,3 @@ The [production version](https://challenge-smartfit.vercel.app/) is deployed at 
 - React
 - Typescript
 - Tailwind
-
-## How to run application locally
-npm i
-
-npm run dev
