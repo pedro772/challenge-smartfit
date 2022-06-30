@@ -54,14 +54,14 @@ export function Form( props : FormProps ) {
           <img 
             src={IconHour} 
             className="object-contain h-8" />
-          <label className="ml-4 font-gothamBook text-gray-500">
+          <label className="ml-2 sm:ml-4 font-gothamBook text-gray-500">
             Horário
           </label>
         </div>
         
         <fieldset>
           <div className="p-4 border-b border-gray-300">
-            <legend className="mt-6 ml-2 text-lg font-gothamBook text-gray-500">Qual período quer treinar?</legend>
+            <legend className="mt-2 sm:mt-6 ml-2 text-lg font-gothamBook text-gray-500">Qual período quer treinar?</legend>
           </div>
 
           <div>
@@ -75,8 +75,8 @@ export function Form( props : FormProps ) {
             ))}
           </div>
 
-          <div className="flex justify-between mt-10">
-            <div className="flex items-center">
+          <div className="flex flex-col md:flex-row items-center justify-between mt-4 md:mt-10">
+            <div className="flex my-2 md:my-0 items-center">
               <input 
                 type="checkbox"
                 id="exibir"
@@ -86,29 +86,31 @@ export function Form( props : FormProps ) {
                 onChange={handleCheckChange}
               />
               <label htmlFor="exibir" className="ml-2 hover:cursor-pointer">
-                <span className="font-gothamBook text-gray-800">Exibir unidades fechadas</span>
+                <span className="font-gothamBook text-gray-800 text-sm sm:text-base">Exibir unidades fechadas</span>
               </label>
             </div>
 
-            <span className="flex font-gothamBook text-gray-800 items-center">
+            <span className="flex font-gothamBook text-gray-800 items-center text-sm sm:text-base">
               Resultados Encontrados: 
-              <span className="font-gothamBlack text-gray-800 text-2xl ml-1">
+              <span className="font-gothamBlack text-gray-800 text-lg sm:text-2xl ml-1">
                 {props.locations ? props.locations.length : "0"}
               </span>
             </span>
           </div>
           
-          <div className="flex items-center justify-center">
-            <input 
-              type="submit" 
-              value="ENCONTRAR UNIDADE"
-              className="font-gothamBlack py-4 px-16 rounded bg-yellow-500 mx-5 hover:opacity-90 cursor-pointer transition-opacity" />
+          <div className="flex flex-col md:flex-row items-center justify-center">
+            <button
+              type="submit"
+              className="self-stretch md:self-auto font-gothamBlack py-4 mt-4 md:px-16 rounded bg-yellow-500 md:mx-5 hover:opacity-90 cursor-pointer transition-opacity"
+            >
+              ENCONTRAR UNIDADE
+            </button>
 
             <input 
               type="reset"
               value="LIMPAR"
               onClick={handleClear}
-              className="font-gothamBlack py-4 px-16 rounded bg-white border-2 border-gray-300 mx-5 cursor-pointer hover:bg-gray-300 hover:border-gray-500 transition-colors" />
+              className="self-stretch md:self-auto font-gothamBlack py-4 mt-4 md:px-16 rounded bg-white border-2 border-gray-300 md:mx-5 cursor-pointer hover:bg-gray-100 transition-colors" />
           </div>
         </fieldset>
       </div>

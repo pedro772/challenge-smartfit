@@ -86,7 +86,7 @@ function App() {
       <div className="flex flex-col min-h-screen">
         <Header />
     
-        <main className="flex-1 mx-20 mb-20">
+        <main className="flex-1 mx-5 md:mx-10 lg:mx-20 mb-20">
           <Form 
             findAll={findAll} 
             clearAll={clearAll}

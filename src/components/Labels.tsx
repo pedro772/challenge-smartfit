@@ -12,7 +12,7 @@ import { Label } from "./Label"
 
 export function Labels() {
   return (
-    <div className="bg-gray-100 mt-14 flex justify-evenly">
+    <div className="bg-gray-100 mt-14 flex flex-col sm:grid sm:grid-cols-2 lg:flex lg:flex-row justify-evenly">
       <Label title="Máscara" icons={[[requiredMask, "Obrigatório"], [recommendedMask, "Recomendado"]]} />
       <Label title="Toalha" icons={[[requiredTowel, "Obrigatório"], [recommendedTowel, "Recomendado"]]} />
       <Label title="Bebedouro" icons={[[partialFountain, "Parcial"], [forbiddenFountain, "Proibido"]]} />

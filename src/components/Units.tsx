@@ -24,7 +24,7 @@ const permissions: any = {
 
 export function Units( { locations } : UnitData ) {
   return (
-    <div className="flex overflow-x-auto overflow-hidden">
+    <div className="flex flex-col md:flex-row max-h-[40rem] mt-4 md:mt-0 overflow-y-auto md:overflow-x-auto overflow-hidden">
       { locations.map(unit => (
         <Unit
           key={unit.title}
