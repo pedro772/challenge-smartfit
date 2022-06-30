@@ -13,7 +13,7 @@ export function Radio( props: RadioProps ) {
   }
 
   return (
-    <div className="flex mt-4 justify-between p-4 border-b border-gray-300">
+    <div className="flex mt-2 sm:mt-4 justify-between p-2 sm:p-4 border-b border-gray-300">
       <div>
         <label htmlFor={props.optionName} className="hover:cursor-pointer">
           <input
@@ -25,13 +25,13 @@ export function Radio( props: RadioProps ) {
             onChange={handleOptionChange}
             className="mr-2" />
         
-          <span className="font-gothamBook text-gray-500">
+          <span className="font-gothamBook text-sm sm:text-base text-gray-500">
             { props.optionName }
           </span>
         </label>
       </div>
       <label htmlFor={props.optionName} className="hover:cursor-pointer">
-        <span className="font-gothamBook text-gray-500">
+        <span className="font-gothamBook text-sm sm:text-base text-gray-500">
           { props.timePeriod }
         </span>
       </label>

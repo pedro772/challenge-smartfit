@@ -5,7 +5,7 @@ export function Header() {
     <header>
       <Navbar />
 
-      <div className="mt-20 mx-20">
+      <div className="mt-20 mx-5 md:mx-10 lg:mx-20">
         <div>
           <h1 className="font-gothamBlack text-3xl text-gray-800">
             REABERTURA<br />SMART FIT

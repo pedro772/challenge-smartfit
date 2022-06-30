@@ -13,7 +13,7 @@ interface UnitProps {
 
 export function Unit( props: UnitProps ) {
   return (
-    <div className="flex flex-col bg-gray-100 my-4 mr-8 p-4 drop-shadow-lg rounded min-w-[16rem] max-w-[19.5rem]">
+    <div className="flex flex-col bg-gray-100 my-4 mr-4 md:mr-8 p-4 drop-shadow-lg rounded min-w-[13.5rem] max-w-[19.5rem]">
       <div className='max-w-[13.5rem]'>
         {
           props.status === "Aberto" ? 
@@ -30,7 +30,7 @@ export function Unit( props: UnitProps ) {
         <div>
           <div className="bg-gray-200 w-full h-[1px] mt-4" />
 
-          <div className="flex mt-4 items-center justify-between">
+          <div className="flex mt-4 items-center justify-evenly md:justify-between">
             {props.rules.map(rule => (
               <img
                 src={rule}
@@ -40,8 +40,8 @@ export function Unit( props: UnitProps ) {
           <div className="grid grid-cols-2">
             {props.schedules.map(schedule => (
               <div className="mt-4 flex flex-col">
-                <h3 className="font-gothamBlack text-gray-700">{schedule.weekdays}</h3>
-                <p className="font-gothamBook text-gray-700 text-sm">{schedule.hour}</p>
+                <h3 className="font-gothamBlack text-gray-700 text-sm sm:text-base">{schedule.weekdays}</h3>
+                <p className="font-gothamBook text-gray-700 text-xs sm:text-sm">{schedule.hour}</p>
               </div>
             ))}
           </div>
